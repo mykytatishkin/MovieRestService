@@ -13,4 +13,5 @@ using MovieRestService.Models;
         }
 
         public DbSet<MovieRestService.Models.Root> Root { get; set; } = default!;
+        public DbSet<MovieRestService.Models.Recent> Recent { get; set; }
     }

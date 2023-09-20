@@ -76,6 +76,13 @@ namespace MovieRestService.Controllers
                         root = JsonSerializer.Deserialize<Root>(result, options);
                         _context.Root.Add(root);
                         _context.SaveChanges();
+                        var recent = new Recent()
+                        {
+                            RootId = root.Id,
+                            CreatedAt = DateTime.Now.ToString()
+                        };
+                        _context.Recent.Add(recent);
+                        _context.SaveChanges();
                     }
                 }
             }
@@ -160,6 +167,25 @@ namespace MovieRestService.Controllers
                 return NotFound();
             }
         }
+
+        [HttpGet("new/{id}")]
+        public async Task<ActionResult<IEnumerable<Root>>> GetRecent(int id)
+        {
+            if (_context.Root == null)
+            {
+                return NotFound();
+            }
+            var list = _context.Recent.OrderByDescending(r => r.CreatedAt).Take(id);
+            var roots = new List<Root>();
+
+            foreach(Recent item in list)
+            {
+                roots.Add(_context.Root.Find(item.RootId));
+            }
+
+            return roots;
+        }
+
 
         private bool RootExists(int id)
         {
