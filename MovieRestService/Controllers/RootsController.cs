@@ -45,7 +45,7 @@ namespace MovieRestService.Controllers
 
         // GET: api/Roots/5
         [HttpGet("{data}")]
-        public async Task<ActionResult<Root>> GetRoot(string data = "")
+        public async Task<ActionResult<List<Root>>> GetRoot(string data = "")
         {
             if (_context.Root == null)
             {
@@ -56,6 +56,17 @@ namespace MovieRestService.Controllers
 
             if (root == null)
             {
+                var root_list = _context.Root.Where(m => m.Director.Contains(data)).ToList();
+                if (root_list.Count != 0)
+                {
+                    return root_list;
+                }
+                root_list = _context.Root.Where(m => m.Actors.Contains(data)).ToList();
+                if (root_list.Count != 0)
+                {
+                    return root_list;
+                }
+
                 using (HttpClient client = new HttpClient())
                 {
                     var response = await client.GetAsync(url);
@@ -68,8 +79,7 @@ namespace MovieRestService.Controllers
                     }
                 }
             }
-
-            return root;
+            return new List<Root>() { root };
         }
 
         // PUT: api/Roots/5
@@ -134,6 +144,21 @@ namespace MovieRestService.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        [HttpGet("img/{id}")]
+        public ActionResult GetImage(int id)
+        {
+            var rootFromDb = _context.Root.Find(id);
+            if (rootFromDb != null)
+            {
+                var image = System.IO.File.OpenRead(rootFromDb.Poster);
+                return File(image, "image/jpeg");
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         private bool RootExists(int id)
