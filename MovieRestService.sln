@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieRestService", "MovieRestService\MovieRestService.csproj", "{9A4F4389-1E8B-4A0A-9E55-5564488B02A8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9A4F4389-1E8B-4A0A-9E55-5564488B02A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A4F4389-1E8B-4A0A-9E55-5564488B02A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A4F4389-1E8B-4A0A-9E55-5564488B02A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A4F4389-1E8B-4A0A-9E55-5564488B02A8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E9B676F2-0C8C-4613-A07B-F03FD62F187A}
+	EndGlobalSection
+EndGlobal
